@@ -1,0 +1,39 @@
+.wrapper {
+  justify-content: center;
+  padding: 50px;
+  display: flex;
+}
+
+.grid {
+  width: 50%;
+}
+
+.container {
+  text-align: center;
+  margin: 0 0 1% 30%;
+  padding: 20px;
+  border: 1px solid black;
+  border-radius: 8px;
+  background-color: white;
+}
+
+.label {
+  float: left;
+}
+
+.value {
+  margin-left: 40%;
+  min-height: 20px;
+}
+
+.phone-image {
+  vertical-align: top;
+  padding-left: 3%;
+  width: 10%;
+  height: auto;
+}
+
+.phone-image > img {
+  width: 200%;
+  height: auto;
+}

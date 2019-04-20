@@ -1,0 +1,8 @@
+<div class="phones-list" fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="20px">
+  <div class="phone-tile" *ngFor="let phone of phonesArray">
+    <img class="phone-image" src="{{phone.imageUrl}}" onerror="this.src='/assets/images/photo-not-available.jpg';"
+         (click)="onClick(phone.id)" alt="Photo not available">
+    <div class="phone-brand">{{phone.brand}}</div>
+    <div class="phone-model">{{phone.model}}</div>
+  </div>
+</div>

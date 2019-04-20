@@ -1,0 +1,17 @@
+.phones-list {
+  padding: 50px;
+  justify-content: center;
+  text-align: center;
+}
+
+.phone-image {
+  cursor: pointer;
+}
+
+.phone-brand {
+  font-size: 80%;
+}
+
+.phone-tile {
+  padding: 20px;
+}
