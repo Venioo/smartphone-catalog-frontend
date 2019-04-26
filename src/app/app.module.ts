@@ -7,24 +7,36 @@ import {FlexLayoutModule} from '@angular/flex-layout';
 import {PhonesListComponent} from './components/phones-list/phones-list.component';
 import {PhoneDetailsComponent} from './components/phone-details/phone-details.component';
 import {RouterModule, Routes} from '@angular/router';
-import {MenuComponent} from './menu/menu.component';
 import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {LayoutModule} from '@angular/cdk/layout';
-import {MatToolbarModule, MatButtonModule, MatSidenavModule, MatIconModule, MatListModule} from '@angular/material';
+import {
+  MatButtonModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatToolbarModule
+} from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {ComparisionComponent} from './components/comparision/comparision.component';
+import {ReactiveFormsModule} from '@angular/forms';
+import {PaginatorComponent} from './components/paginator/paginator.component';
 
 const routes: Routes = [
   {path: '', component: PhonesListComponent},
-  {path: 'phones/:id', component: PhoneDetailsComponent}
-];
+  {path: 'phones/:id', component: PhoneDetailsComponent},
+  {path: 'comparision', component: ComparisionComponent}];
 
 @NgModule({
   declarations: [
     AppComponent,
     PhonesListComponent,
     PhoneDetailsComponent,
-    MenuComponent,
     MainNavComponent,
+    ComparisionComponent,
+    PaginatorComponent,
   ],
   imports: [
     BrowserModule,
@@ -37,7 +49,11 @@ const routes: Routes = [
     MatSidenavModule,
     MatIconModule,
     MatListModule,
-    BrowserAnimationsModule
+    MatSelectModule,
+    MatInputModule,
+    MatPaginatorModule,
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   exports: [RouterModule],
   providers: [],

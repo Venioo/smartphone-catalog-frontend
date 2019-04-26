@@ -1,0 +1,262 @@
+<div class="wrapper">
+  <div *ngIf="phonesArray.length!=2" class="selector">
+    <div class="brand-selector">
+      <mat-form-field>
+        <mat-label>Brand</mat-label>
+        <mat-select (selectionChange)="this.updateModels($event.value); selectedModel=null" [(value)]="selectedBrand">
+          <mat-option *ngFor="let selectedBrand of brandsArray" [value]="selectedBrand">{{selectedBrand}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="model-selector">
+      <mat-form-field>
+        <mat-label>Model</mat-label>
+        <mat-select [(value)]="selectedModel" [disabled]="!modelsArray">
+          <mat-option *ngFor="let selectedModel of modelsArray" [value]="selectedModel">{{selectedModel}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <button (click)="this.getPhone(selectedBrand, selectedModel)" [disabled]="!selectedModel" class="mat-raised-button mat-primary" mat-raised-button="">Add</button>
+  </div>
+  <div *ngIf="phonesArray.length != 0" class="grid">
+    <div class="container">
+      <div class="label"></div>
+      <div *ngFor="let phone of phonesArray" class="image-tile">
+        <div class="remove-button">
+          <button (click)="this.removePhoneFromComparision(phone)" class="mat-mini-fab mat-warn">X</button>
+        </div>
+        <div class="value"><img alt="Photo not available" onerror="this.src='/assets/images/photo-not-available.jpg';" src="{{phone?.imageUrl}}"></div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Brand</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.brand}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Model</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.model}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Networks</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.networks}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Bands 2</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.bands2}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Bands 3</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.bands3}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Bands 4</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.bands4}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Network speed</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.networkSpeed}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">GPRS</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.gprs}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">EDGE</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.edge}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Announced date</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.announcedDate}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Status</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.status}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Dimensions</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.dimensions}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Weight</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.weight}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">SIM</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.sim}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Display type</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.displayType}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Display resolution</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.displayResolution}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Display size</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.displaySize}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Operation system</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.os}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">CPU</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.cpu}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Chipset</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.chipset}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">GPU</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.gpu}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Memory card</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.memoryCard}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Internal memory</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.internalMemory}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">RAM</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.ram}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Primary camera</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.primaryCamera}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Secondary camera</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.secondaryCamera}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Loud speaker</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.loudSpeaker}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Audio jack</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.audioJack}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">WLAN</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.wlan}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Bluetooth</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.bluetooth}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">GPS</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.gps}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">NFC</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.nfc}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Radio</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.radio}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">USB</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.usb}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Sensors</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.sensors}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Battery</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.battery}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Colors</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.colors}}</div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="label">Price</div>
+      <div *ngFor="let phone of phonesArray" class="values">
+        <div class="value">{{phone?.price}}</div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,7 @@
-<div class="phones-list" fxLayout="row wrap" fxLayout.xs="column" fxLayoutWrap="wrap" fxLayoutGap="20px">
-  <div class="phone-tile" *ngFor="let phone of phonesArray">
+<app-paginator (pageEventEmitter)="onPageChange($event)" [length]="this.phonesPage?.totalElements"></app-paginator>
+
+<div class="phones-list" fxLayout="row wrap">
+  <div class="phone-tile" *ngFor="let phone of phonesPage.content">
     <img class="phone-image" src="{{phone.imageUrl}}" onerror="this.src='/assets/images/photo-not-available.jpg';"
          (click)="onClick(phone.id)" alt="Photo not available">
     <div class="phone-brand">{{phone.brand}}</div>

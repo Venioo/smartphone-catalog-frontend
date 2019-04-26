@@ -17,7 +17,7 @@ export class PhoneDetailsComponent implements OnInit {
 
   ngOnInit() {
     const id = this.route.snapshot.params.id;
-    this.phoneService.getSingle(id)
+    this.phoneService.getPhone(id)
       .subscribe((data: Phone) => this.phone = data);
   }
 

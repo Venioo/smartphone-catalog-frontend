@@ -1,5 +1,5 @@
-import { Injectable } from '@angular/core';
-import {HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest} from '@angular/common/http';
 import {Configuration} from '../configuration/configuration.service';
 import {Observable} from 'rxjs';
 
@@ -9,33 +9,61 @@ import {Observable} from 'rxjs';
 })
 export class PhoneService {
 
-  private readonly actionUrl: string;
+  private readonly phonesUrl: string;
+  private readonly brandsUrl: string;
+  private readonly modelsUrl: string;
+  private readonly pageUrl: string;
+  private readonly phonesComparisionUrl: string;
+
 
   constructor(private httpClient: HttpClient, private configuration: Configuration) {
-    this.actionUrl = configuration.apiUrl;
+    this.phonesUrl = configuration.apiUrl + 'phones/';
+    this.pageUrl = this.phonesUrl + 'page/';
+    this.brandsUrl = this.phonesUrl + 'brands/';
+    this.modelsUrl = this.phonesUrl + 'models/';
+    this.phonesComparisionUrl = this.phonesUrl + 'comparison/';
   }
 
-  public getAll<T>(): Observable<T> {
-    return this.httpClient.get<T>(this.actionUrl);
+  public getAllPhones<T>(): Observable<T> {
+    return this.httpClient.get<T>(this.phonesUrl);
   }
 
-  public getSingle<T>(id: number): Observable<T> {
-    return this.httpClient.get<T>(this.actionUrl + id);
+  public getPhonePage<T>(page: number, size: number): Observable<T> {
+    const params = new HttpParams().set('page', String(page)).set('size', String(size));
+    return this.httpClient.get<T>(this.pageUrl, {params});
+  }
+
+  public getAllBrands(): Observable<string> {
+    return this.httpClient.get<string>(this.brandsUrl);
+  }
+
+  public getModelsByBrand(brand: string): Observable<string> {
+    const params = new HttpParams().set('brand', brand);
+    return this.httpClient.get<string>(this.modelsUrl, {params});
+  }
+
+  public getPhone<T>(id: number): Observable<T> {
+    return this.httpClient.get<T>(this.phonesUrl + id);
+  }
+
+  public getPhoneByBrandAndModel<T>(brand: string, model: string): Observable<T> {
+    const params = new HttpParams().set('brand', brand).set('model', model);
+    return this.httpClient.get<T>(this.phonesComparisionUrl, {params});
   }
 
   public add<T>(itemName: string): Observable<T> {
-    const toAdd = { ItemName: itemName };
+    const toAdd = {ItemName: itemName};
 
-    return this.httpClient.post<T>(this.actionUrl, toAdd);
+    return this.httpClient.post<T>(this.phonesUrl, toAdd);
   }
 
   public update<T>(id: number, itemToUpdate: any): Observable<T> {
     return this.httpClient
-      .put<T>(this.actionUrl + id, itemToUpdate);
+      .put<T>(this.phonesUrl + id, itemToUpdate);
   }
 
   public delete<T>(id: number): Observable<T> {
-    return this.httpClient.delete<T>(this.actionUrl + id);
+    return this.httpClient.delete<T>(this.phonesUrl + id);
   }
 
 }
@@ -47,10 +75,10 @@ export class CustomInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (!req.headers.has('Content-Type')) {
-      req = req.clone({ headers: req.headers.set('Content-Type', 'application/json') });
+      req = req.clone({headers: req.headers.set('Content-Type', 'application/json')});
     }
 
-    req = req.clone({ headers: req.headers.set('Accept', 'application/json') });
+    req = req.clone({headers: req.headers.set('Accept', 'application/json')});
     return next.handle(req);
   }
 }
