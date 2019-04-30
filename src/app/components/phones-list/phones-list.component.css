@@ -1,6 +1,5 @@
 .phones-list {
   display: flex;
-  padding: 50px;
   justify-content: center;
   text-align: center;
 }
@@ -14,5 +13,10 @@
 }
 
 .phone-tile {
-  padding: 20px;
+  margin: 20px;
+}
+
+mat-search-bar {
+  margin: 20px 20px 0 0;
+  float: right;
 }

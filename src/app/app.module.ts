@@ -17,12 +17,13 @@ import {
   MatPaginatorModule,
   MatSelectModule,
   MatSidenavModule,
-  MatToolbarModule
+  MatToolbarModule,
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ComparisionComponent} from './components/comparision/comparision.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {PaginatorComponent} from './components/paginator/paginator.component';
+import {NgMatSearchBarModule} from 'ng-mat-search-bar';
 
 const routes: Routes = [
   {path: '', component: PhonesListComponent},
@@ -53,7 +54,8 @@ const routes: Routes = [
     MatInputModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgMatSearchBarModule
   ],
   exports: [RouterModule],
   providers: [],

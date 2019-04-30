@@ -13,12 +13,14 @@ export class PhoneService {
   private readonly brandsUrl: string;
   private readonly modelsUrl: string;
   private readonly pageUrl: string;
+  private readonly pageSearchedUrl: string;
   private readonly phonesComparisionUrl: string;
 
 
   constructor(private httpClient: HttpClient, private configuration: Configuration) {
     this.phonesUrl = configuration.apiUrl + 'phones/';
     this.pageUrl = this.phonesUrl + 'page/';
+    this.pageSearchedUrl = this.phonesUrl + 'page/search';
     this.brandsUrl = this.phonesUrl + 'brands/';
     this.modelsUrl = this.phonesUrl + 'models/';
     this.phonesComparisionUrl = this.phonesUrl + 'comparison/';
@@ -31,6 +33,11 @@ export class PhoneService {
   public getPhonePage<T>(page: number, size: number): Observable<T> {
     const params = new HttpParams().set('page', String(page)).set('size', String(size));
     return this.httpClient.get<T>(this.pageUrl, {params});
+  }
+
+  public getPhonePageSearched<T>(searchInput: string, page: number, size: number): Observable<T> {
+    const params = new HttpParams().set('searchInput', searchInput).set('page', String(page)).set('size', String(size));
+    return this.httpClient.get<T>(this.pageSearchedUrl, {params});
   }
 
   public getAllBrands(): Observable<string> {
