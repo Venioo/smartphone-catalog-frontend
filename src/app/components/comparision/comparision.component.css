@@ -8,7 +8,7 @@
 }
 
 .grid {
-  width: 50%;
+  width: 75%;
   margin: 0 auto;
   position: relative;
 }
@@ -55,4 +55,22 @@ table tr:nth-child(odd) {
 }
 table tr:nth-child(even) {
   background-color: #ffffff;
+}
+
+.detailsTable {
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.detailsTable th {
+  width: 150px;
+}
+
+.wholeTable {
+  margin: 1px;
+  border: 1px solid #3f51b5;
+  background: #3f51b5;
+  border-radius: 10px;
 }

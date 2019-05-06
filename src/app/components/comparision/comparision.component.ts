@@ -15,6 +15,11 @@ export class ComparisionComponent implements OnInit {
 
   public phonesArray: Phone[] = [];
 
+  private showSummary = false;
+  private showGeneral = true;
+  private showNetwork = true;
+  private showMultimedia = true;
+
   constructor(private phoneService: PhoneService) {
   }
 
@@ -49,4 +54,12 @@ export class ComparisionComponent implements OnInit {
     this.phonesArray = this.phonesArray.filter(item => item !== phone);
   }
 
+  onChange(int) {
+    switch (int) {
+      case 0: this.showSummary = !this.showSummary; break;
+      case 1: this.showGeneral = !this.showGeneral; break;
+      case 2: this.showNetwork = !this.showNetwork; break;
+      case 3: this.showMultimedia = !this.showMultimedia; break;
+    }
+  }
 }

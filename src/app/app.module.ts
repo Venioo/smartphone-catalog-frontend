@@ -10,7 +10,7 @@ import {RouterModule, Routes} from '@angular/router';
 import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {LayoutModule} from '@angular/cdk/layout';
 import {
-  MatButtonModule,
+  MatButtonModule, MatCheckboxModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
@@ -53,7 +53,8 @@ const routes: Routes = [
     MatInputModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatCheckboxModule
   ],
   exports: [RouterModule],
   providers: [],

@@ -1,159 +1,183 @@
-<div class="wrapper">
-  <div class="grid">
-    <div class="container">
-      <div class="label">Brand</div>
-      <div class="value">{{phone?.brand}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Model</div>
-      <div class="value">{{phone?.model}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Networks</div>
-      <div class="value">{{phone?.networks}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Bands 2</div>
-      <div class="value">{{phone?.bands2}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Bands 3</div>
-      <div class="value">{{phone?.bands3}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Bands 4</div>
-      <div class="value">{{phone?.bands4}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Network speed</div>
-      <div class="value">{{phone?.networkSpeed}}</div>
-    </div>
-    <div class="container">
-      <div class="label">GPRS</div>
-      <div class="value">{{phone?.gprs}}</div>
-    </div>
-    <div class="container">
-      <div class="label">EDGE</div>
-      <div class="value">{{phone?.edge}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Announced date</div>
-      <div class="value">{{phone?.announcedDate}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Status</div>
-      <div class="value">{{phone?.status}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Dimensions</div>
-      <div class="value">{{phone?.dimensions}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Weight</div>
-      <div class="value">{{phone?.weight}}</div>
-    </div>
-    <div class="container">
-      <div class="label">SIM</div>
-      <div class="value">{{phone?.sim}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Display type</div>
-      <div class="value">{{phone?.displayType}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Display resolution</div>
-      <div class="value">{{phone?.displayResolution}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Display size</div>
-      <div class="value">{{phone?.displaySize}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Operation system</div>
-      <div class="value">{{phone?.os}}</div>
-    </div>
-    <div class="container">
-      <div class="label">CPU</div>
-      <div class="value">{{phone?.cpu}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Chipset</div>
-      <div class="value">{{phone?.chipset}}</div>
-    </div>
-    <div class="container">
-      <div class="label">GPU</div>
-      <div class="value">{{phone?.gpu}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Memory card</div>
-      <div class="value">{{phone?.memoryCard}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Internal memory</div>
-      <div class="value">{{phone?.internalMemory}}</div>
-    </div>
-    <div class="container">
-      <div class="label">RAM</div>
-      <div class="value">{{phone?.ram}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Primary camera</div>
-      <div class="value">{{phone?.primaryCamera}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Secondary camera</div>
-      <div class="value">{{phone?.secondaryCamera}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Loud speaker</div>
-      <div class="value">{{phone?.loudSpeaker}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Audio jack</div>
-      <div class="value">{{phone?.audioJack}}</div>
-    </div>
-    <div class="container">
-      <div class="label">WLAN</div>
-      <div class="value">{{phone?.wlan}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Bluetooth</div>
-      <div class="value">{{phone?.bluetooth}}</div>
-    </div>
-    <div class="container">
-      <div class="label">GPS</div>
-      <div class="value">{{phone?.gps}}</div>
-    </div>
-    <div class="container">
-      <div class="label">NFC</div>
-      <div class="value">{{phone?.nfc}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Radio</div>
-      <div class="value">{{phone?.radio}}</div>
-    </div>
-    <div class="container">
-      <div class="label">USB</div>
-      <div class="value">{{phone?.usb}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Sensors</div>
-      <div class="value">{{phone?.sensors}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Battery</div>
-      <div class="value">{{phone?.battery}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Colors</div>
-      <div class="value">{{phone?.colors}}</div>
-    </div>
-    <div class="container">
-      <div class="label">Price</div>
-      <div class="value">{{phone?.price}}</div>
-    </div>
-  </div>
+<div class="phone">
   <div class="phone-image">
-    <img alt="Photo not available" onerror="this.src='/assets/images/photo-not-available.jpg';" src="{{phone?.imageUrl}}">
+    <img alt="Photo not available" onerror="this.src='/assets/images/photo-not-available.jpg';"
+         src="{{phone?.imageUrl}}">
   </div>
+  <table class="wholeTable">
+    <tr>
+      <mat-checkbox checked="true" (change)="onChange(0)">Summary</mat-checkbox>
+    </tr>
+    <table class="detailsTable" *ngIf="!showSummary">
+      <tr>
+        <th>Brand</th>
+        <td>{{phone?.brand}}</td>
+      </tr>
+      <tr>
+        <th>Model</th>
+        <td>{{phone?.model}}</td>
+      </tr>
+      <tr>
+        <th>Display size</th>
+        <td>{{phone?.displaySize}}</td>
+      </tr>
+      <tr>
+        <th>Price</th>
+        <td>{{phone?.price}}$</td>
+      </tr>
+      <tr>
+        <th>RAM</th>
+        <td>{{phone?.ram}}</td>
+      </tr>
+      <tr>
+        <th>Internal memory</th>
+        <td>{{phone?.internalMemory}}</td>
+      </tr>
+      <tr>
+        <th>Memory Card</th>
+        <td>{{phone?.memoryCard}}</td>
+      </tr>
+      <tr>
+        <th>Battery</th>
+        <td>{{phone?.battery}}</td>
+      </tr>
+      <tr>
+        <th>Color</th>
+        <td>{{phone?.colors}}</td>
+      </tr>
+    </table>
+    <tr>
+      <mat-checkbox (change)="onChange(1)">General</mat-checkbox>
+    </tr>
+    <table class="detailsTable" *ngIf="!showGeneral">
+      <tr>
+        <th>Operation system</th>
+        <td>{{phone?.os}}</td>
+      </tr>
+      <tr>
+        <th>CPU</th>
+        <td>{{phone?.cpu}}</td>
+      </tr>
+      <tr>
+        <th>Chipset</th>
+        <td>{{phone?.chipset}}</td>
+      </tr>
+      <tr>
+        <th>GPU</th>
+        <td>{{phone?.gpu}}</td>
+      </tr>
+      <tr>
+        <th>Announced date</th>
+        <td>{{phone?.announcedDate}}</td>
+      </tr>
+      <tr>
+        <th>Status</th>
+        <td>{{phone?.status}}</td>
+      </tr>
+      <tr>
+        <th>Dimensions</th>
+        <td>{{phone?.dimensions}}</td>
+      </tr>
+      <tr>
+        <th>Weight</th>
+        <td>{{phone?.weight}}</td>
+      </tr>
+      <tr>
+        <th>SIM</th>
+        <td>{{phone?.sim}}</td>
+      </tr>
+      <tr>
+        <th>Display size</th>
+        <td>{{phone?.displaySize}}</td>
+      </tr>
+      <tr>
+        <th>Display type</th>
+        <td>{{phone?.displayType}}</td>
+      </tr>
+      <tr>
+        <th>Display resolution</th>
+        <td>{{phone?.displayResolution}}</td>
+      </tr>
+      <tr>
+        <th>Networks</th>
+        <td>{{phone?.networks}}</td>
+      </tr>
+    </table>
+    <tr>
+      <mat-checkbox (change)="onChange(2)">Network Connectivity</mat-checkbox>
+    </tr>
+    <table class="detailsTable" *ngIf="!showNetwork">
+      <tr>
+        <th rowspan="3">Bands</th>
+        <td>{{phone?.bands2}}</td>
+      </tr>
+      <tr>
+        <td>{{phone?.bands3}}</td>
+      </tr>
+      <tr>
+        <td>{{phone?.bands4}}</td>
+      </tr>
+      <tr>
+        <th>Network speed</th>
+        <td>{{phone?.networkSpeed}}</td>
+      </tr>
+      <tr>
+        <th>GPRS</th>
+        <td>{{phone?.gprs}}</td>
+      </tr>
+      <tr>
+        <th>EDGE</th>
+        <td>{{phone?.edge}}</td>
+      </tr>
+    </table>
+
+    <tr>
+      <mat-checkbox (change)="onChange(3)">Multimedia</mat-checkbox>
+    </tr>
+    <table class="detailsTable" *ngIf="!showMultimedia">
+      <tr>
+        <th>Primary camera</th>
+        <td>{{phone?.primaryCamera}}</td>
+      </tr>
+      <tr>
+        <th>Secondary camera</th>
+        <td>{{phone?.secondaryCamera}}</td>
+      </tr>
+      <tr>
+        <th>Loud speaker</th>
+        <td>{{phone?.loudSpeaker}}</td>
+      </tr>
+      <tr>
+        <th>Audio jack</th>
+        <td>{{phone?.audioJack}}</td>
+      </tr>
+      <tr>
+        <th>Operation WLAN</th>
+        <td>{{phone?.wlan}}</td>
+      </tr>
+      <tr>
+        <th>Bluetooth</th>
+        <td>{{phone?.bluetooth}}</td>
+      </tr>
+      <tr>
+        <th>GPS</th>
+        <td>{{phone?.gps}}</td>
+      </tr>
+      <tr>
+        <th>NFC</th>
+        <td>{{phone?.nfc}}</td>
+      </tr>
+      <tr>
+        <th>Radio</th>
+        <td>{{phone?.radio}}</td>
+      </tr>
+      <tr>
+        <th>USB</th>
+        <td>{{phone?.usb}}</td>
+      </tr>
+      <tr>
+        <th>Sensors</th>
+        <td>{{phone?.sensors}}</td>
+      </tr>
+    </table>
+  </table>
 </div>
