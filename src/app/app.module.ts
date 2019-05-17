@@ -11,24 +11,29 @@ import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {LayoutModule} from '@angular/cdk/layout';
 import {
   MatButtonModule,
+  MatCheckboxModule,
   MatIconModule,
   MatInputModule,
   MatListModule,
   MatPaginatorModule,
   MatSelectModule,
   MatSidenavModule,
-  MatToolbarModule,
+  MatStepperModule,
+  MatToolbarModule
 } from '@angular/material';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ComparisionComponent} from './components/comparision/comparision.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PaginatorComponent} from './components/paginator/paginator.component';
 import {NgMatSearchBarModule} from 'ng-mat-search-bar';
+import {LoadingSpinnerComponent} from './components/loading-spinner/loading-spinner.component';
+import {PairWiseComparisionComponent} from './components/pair-wise-comparision/pair-wise-comparision.component';
 
 const routes: Routes = [
   {path: '', component: PhonesListComponent},
   {path: 'phones/:id', component: PhoneDetailsComponent},
-  {path: 'comparision', component: ComparisionComponent}];
+  {path: 'comparision', component: ComparisionComponent},
+  {path: 'pair-wise-comparision', component: PairWiseComparisionComponent}];
 
 @NgModule({
   declarations: [
@@ -38,6 +43,8 @@ const routes: Routes = [
     MainNavComponent,
     ComparisionComponent,
     PaginatorComponent,
+    LoadingSpinnerComponent,
+    PairWiseComparisionComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +62,10 @@ const routes: Routes = [
     MatPaginatorModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    NgMatSearchBarModule
+    NgMatSearchBarModule,
+    MatStepperModule,
+    MatCheckboxModule,
+    FormsModule
   ],
   exports: [RouterModule],
   providers: [],

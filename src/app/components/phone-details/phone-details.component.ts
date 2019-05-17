@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {PhoneService} from '../../services/phone-service/phone.service';
-import {Phone} from '../../dto/phone';
+import {Phone} from '../../dto/phone/phone';
 
 @Component({
   selector: 'app-phone-details',

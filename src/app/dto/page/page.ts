@@ -1,4 +1,4 @@
-import {Phone} from './phone';
+import {Phone} from '../phone/phone';
 
 export class Page {
   content: Phone[];

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {PhoneService} from '../../services/phone-service/phone.service';
-import {Phone} from '../../dto/phone';
+import {Phone} from '../../dto/phone/phone';
 
 @Component({
   selector: 'app-comparision',

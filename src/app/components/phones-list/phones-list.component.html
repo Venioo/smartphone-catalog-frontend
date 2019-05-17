@@ -1,6 +1,9 @@
-<mat-search-bar (onEnter)="onSearchBoxInteraction($event);"
-                (onClose)="onClearSearchBox()"></mat-search-bar>
-<app-paginator (pageEventEmitter)="onPageChange($event)" [length]="this.phonesPage?.totalElements"></app-paginator>
+<div class="top-bar">
+  <mat-search-bar (onEnter)="onSearchBoxInteraction($event);"
+                  (onClose)="onClearSearchBox()"></mat-search-bar>
+  <app-paginator (pageEventEmitter)="onPageChange($event)" [length]="this.phonesPage?.totalElements"></app-paginator>
+</div>
+<app-loading-spinner *ngIf="showSpinner"></app-loading-spinner>
 <div class="phones-list" fxLayout="row wrap">
   <div class="phone-tile" *ngFor="let phone of phonesPage?.content">
     <img class="phone-image" src="{{phone.imageUrl}}" onerror="this.src='/assets/images/photo-not-available.jpg';"

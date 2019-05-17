@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {PhoneService} from '../../services/phone-service/phone.service';
 import {Router} from '@angular/router';
-import {Page} from '../../dto/page';
+import {Page} from '../../dto/page/page';
 import {PageEvent} from '@angular/material';
 
 @Component({
@@ -16,6 +16,7 @@ export class PhonesListComponent implements OnInit {
   lastPageEvent: PageEvent;
   lastSearchedInput: string;
   searched = false;
+  showSpinner = true;
 
   constructor(private phoneService: PhoneService, private router: Router) {
   }
@@ -59,12 +60,17 @@ export class PhonesListComponent implements OnInit {
     if (!searchInput) {
       this.phoneService
         .getPhonePage<Page>(pageIndex, pageSize)
-        .subscribe((data: Page) => this.phonesPage = data);
+        .subscribe((data: Page) => {
+          this.phonesPage = data;
+          this.showSpinner = false;
+        });
     } else {
       this.phoneService
         .getPhonePageSearched<Page>(searchInput, pageIndex, pageSize)
-        .subscribe((data: Page) => this.phonesPage = data);
+        .subscribe((data: Page) => {
+          this.phonesPage = data;
+          this.showSpinner = false;
+        });
     }
   }
-
 }

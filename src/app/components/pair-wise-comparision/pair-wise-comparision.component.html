@@ -1,0 +1,73 @@
+<mat-horizontal-stepper linear #stepper>
+  <mat-step [stepControl]="firstFormGroup">
+    <form [formGroup]="firstFormGroup">
+      <ng-template matStepLabel>Choose parameters</ng-template>
+      <div>
+        <mat-checkbox color="primary" formControlName="checkboxPrice" [(ngModel)]="priceParameter.checked" (change)="getCheckboxes()">{{priceParameter.name}}</mat-checkbox>
+        <mat-form-field *ngIf="priceParameter.checked">
+          <input matInput formControlName="inputPriceMin" placeholder="Minimum price" [(ngModel)]="priceParameter.valueMin">
+        </mat-form-field>
+        <mat-form-field *ngIf="priceParameter.checked">
+          <input matInput formControlName="inputPriceMax" placeholder="Maximum price" [(ngModel)]="priceParameter.valueMax">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-checkbox color="primary" formControlName="checkboxAnnouncedDate" [(ngModel)]="announcedDateParameter.checked"
+                      (change)="getCheckboxes()">{{announcedDateParameter.name}}</mat-checkbox>
+        <mat-form-field *ngIf="announcedDateParameter.checked">
+          <input matInput formControlName="inputAnnouncedDate" placeholder="Announced date after" [(ngModel)]="announcedDateParameter.valueMin">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-checkbox color="primary" formControlName="checkboxDisplaySize" [(ngModel)]="displaySizeParameter.checked"
+                      (change)="getCheckboxes()">{{displaySizeParameter.name}}</mat-checkbox>
+        <mat-form-field *ngIf="displaySizeParameter.checked">
+          <input formControlName="inputDisplaySizeMin" matInput placeholder="Minimum display size" [(ngModel)]="displaySizeParameter.valueMin">
+        </mat-form-field>
+        <mat-form-field *ngIf="displaySizeParameter.checked">
+          <input formControlName="inputDisplaySizeMax" matInput placeholder="Maximum display size" [(ngModel)]="displaySizeParameter.valueMax">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-checkbox color="primary" formControlName="checkboxOS" [(ngModel)]="OSParameter.checked" (change)="getCheckboxes()">{{OSParameter.name}}</mat-checkbox>
+        <mat-form-field *ngIf="OSParameter.checked">
+          <input matInput formControlName="inputOS" placeholder="" [(ngModel)]="OSParameter.valueMin">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-checkbox color="primary" formControlName="checkboxRAM" [(ngModel)]="RAMParameter.checked" (change)="getCheckboxes()">{{RAMParameter.name}}</mat-checkbox>
+        <mat-form-field *ngIf="RAMParameter.checked">
+          <input matInput formControlName="inputRAM" placeholder="Minimum RAM size" [(ngModel)]="RAMParameter.valueMin">
+        </mat-form-field>
+      </div>
+      <div>
+        <mat-checkbox color="primary" formControlName="checkboxBattery" [(ngModel)]="batteryParameter.checked" (change)="getCheckboxes()">{{batteryParameter.name}}</mat-checkbox>
+        <mat-form-field *ngIf="batteryParameter.checked">
+          <input matInput formControlName="inputBattery" placeholder="Minimum battery capacity" [(ngModel)]="batteryParameter.valueMin">
+        </mat-form-field>
+      </div>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup">
+    <form [formGroup]="secondFormGroup">
+      <ng-template matStepLabel>Set weights</ng-template>
+      <mat-form-field>
+        <input matInput placeholder="Address" formControlName="secondCtrl" required>
+      </mat-form-field>
+      <div>
+        <button mat-button matStepperPrevious>Back</button>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step>
+    <ng-template matStepLabel>Results</ng-template>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+    </div>
+  </mat-step>
+</mat-horizontal-stepper>
