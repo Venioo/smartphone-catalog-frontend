@@ -33,6 +33,57 @@
 }
 
 .phone-image > img {
-  width: 200%;
+  width: 150%;
   height: auto;
 }
+
+.detailsTable {
+  border: 0;
+  border-radius: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.detailsTable th {
+  width: 40%;
+}
+
+.wholeTable {
+  margin: 1px;
+  border: 1px solid #3f51b5;
+  background: #3f51b5;
+  border-radius: 10px;
+  left: 20%;
+  top: 12%;
+  position: absolute;
+}
+
+table {
+  border-radius: 25px;
+  background: #3f51b5;
+  border: 2px solid #3f51b5;
+  margin: 5px;
+}
+th , td  {
+  margin: 2px;
+  padding: 2px;
+}
+
+table tr:first-child {
+  border-radius: 25px 25px 0 0 !important;
+  border: 2px solid #3f51b5 !important;
+}
+
+table tr:last-child {
+  border-radius: 0 0 25px 25px !important;
+  border: 2px solid #3f51b5 !important;
+  /*  repair it soon*/
+}
+
+table tr:nth-child(odd) {
+  background-color: #f0f0ff;
+}
+table tr:nth-child(even) {
+  background-color: #ffffff;
+}
+
