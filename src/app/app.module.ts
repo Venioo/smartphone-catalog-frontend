@@ -1,6 +1,21 @@
-import {BrowserModule} from '@angular/platform-browser';
+import {
+  GestureConfig,
+  MatButtonModule,
+  MatCardModule,
+  MatCheckboxModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatPaginatorModule,
+  MatSelectModule,
+  MatSidenavModule,
+  MatSliderModule,
+  MatStepperModule,
+  MatToolbarModule
+} from '@angular/material';
+import {BrowserModule, HAMMER_GESTURE_CONFIG} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {NgModule} from '@angular/core';
-
 import {AppComponent} from './app.component';
 import {HttpClientModule} from '@angular/common/http';
 import {FlexLayoutModule} from '@angular/flex-layout';
@@ -9,19 +24,7 @@ import {PhoneDetailsComponent} from './components/phone-details/phone-details.co
 import {RouterModule, Routes} from '@angular/router';
 import {MainNavComponent} from './components/main-nav/main-nav.component';
 import {LayoutModule} from '@angular/cdk/layout';
-import {
-  MatButtonModule,
-  MatCheckboxModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatPaginatorModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatStepperModule,
-  MatToolbarModule
-} from '@angular/material';
-import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
 import {ComparisionComponent} from './components/comparision/comparision.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {PaginatorComponent} from './components/paginator/paginator.component';
@@ -65,10 +68,12 @@ const routes: Routes = [
     NgMatSearchBarModule,
     MatStepperModule,
     MatCheckboxModule,
-    FormsModule
+    FormsModule,
+    MatSliderModule,
+    MatCardModule,
   ],
   exports: [RouterModule],
-  providers: [],
+  providers: [{provide: HAMMER_GESTURE_CONFIG, useClass: GestureConfig}],
   bootstrap: [AppComponent]
 })
 export class AppModule {

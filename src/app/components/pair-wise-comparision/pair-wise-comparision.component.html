@@ -2,72 +2,141 @@
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">
       <ng-template matStepLabel>Choose parameters</ng-template>
-      <div>
-        <mat-checkbox color="primary" formControlName="checkboxPrice" [(ngModel)]="priceParameter.checked" (change)="getCheckboxes()">{{priceParameter.name}}</mat-checkbox>
-        <mat-form-field *ngIf="priceParameter.checked">
-          <input matInput formControlName="inputPriceMin" placeholder="Minimum price" [(ngModel)]="priceParameter.valueMin">
-        </mat-form-field>
-        <mat-form-field *ngIf="priceParameter.checked">
-          <input matInput formControlName="inputPriceMax" placeholder="Maximum price" [(ngModel)]="priceParameter.valueMax">
-        </mat-form-field>
+      <div class='error' *ngIf="!validateCheckboxes()">Choose at least two options!</div>
+      <div formGroupName="priceGroup">
+        <mat-card class="parameter-card">
+          <mat-card-content class="parameter-card-content">
+            <mat-checkbox color="primary" formControlName="checkboxPrice" [(ngModel)]="parametersList[0].checked" (change)="getCheckboxes()"
+                          [required]="!validateCheckboxes()">{{parametersList[0].name}}</mat-checkbox>
+            <mat-form-field *ngIf="parametersList[0].checked">
+              <input matInput type="number" formControlName="inputPriceMin" placeholder="Minimum price" [(ngModel)]="parametersList[0].valueMin">
+            </mat-form-field>
+            <mat-form-field *ngIf="parametersList[0].checked">
+              <input matInput type="number" formControlName="inputPriceMax" placeholder="Maximum price" [(ngModel)]="parametersList[0].valueMax">
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
       </div>
-      <div>
-        <mat-checkbox color="primary" formControlName="checkboxAnnouncedDate" [(ngModel)]="announcedDateParameter.checked"
-                      (change)="getCheckboxes()">{{announcedDateParameter.name}}</mat-checkbox>
-        <mat-form-field *ngIf="announcedDateParameter.checked">
-          <input matInput formControlName="inputAnnouncedDate" placeholder="Announced date after" [(ngModel)]="announcedDateParameter.valueMin">
-        </mat-form-field>
+      <div formGroupName="dateGroup">
+        <mat-card class="parameter-card">
+          <mat-card-content class="parameter-card-content">
+            <mat-checkbox color="primary" formControlName="checkboxAnnouncedDate" [(ngModel)]="parametersList[1].checked"
+                          (change)="getCheckboxes()" [required]="!validateCheckboxes()">{{parametersList[1].name}}</mat-checkbox>
+            <mat-form-field *ngIf="parametersList[1].checked">
+              <input matInput type="number" formControlName="inputAnnouncedDate" placeholder="Announced date after" [(ngModel)]="parametersList[1].valueMin">
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
       </div>
-      <div>
-        <mat-checkbox color="primary" formControlName="checkboxDisplaySize" [(ngModel)]="displaySizeParameter.checked"
-                      (change)="getCheckboxes()">{{displaySizeParameter.name}}</mat-checkbox>
-        <mat-form-field *ngIf="displaySizeParameter.checked">
-          <input formControlName="inputDisplaySizeMin" matInput placeholder="Minimum display size" [(ngModel)]="displaySizeParameter.valueMin">
-        </mat-form-field>
-        <mat-form-field *ngIf="displaySizeParameter.checked">
-          <input formControlName="inputDisplaySizeMax" matInput placeholder="Maximum display size" [(ngModel)]="displaySizeParameter.valueMax">
-        </mat-form-field>
+      <div formGroupName="displaySizeGroup">
+        <mat-card class="parameter-card">
+          <mat-card-content class="parameter-card-content">
+            <mat-checkbox color="primary" formControlName="checkboxDisplaySize" [(ngModel)]="parametersList[2].checked"
+                          (change)="getCheckboxes()" [required]="!validateCheckboxes()">{{parametersList[2].name}}</mat-checkbox>
+            <mat-form-field *ngIf="parametersList[2].checked">
+              <input type="number" formControlName="inputDisplaySizeMin" matInput placeholder="Minimum display size" [(ngModel)]="parametersList[2].valueMin">
+            </mat-form-field>
+            <mat-form-field *ngIf="parametersList[2].checked">
+              <input type="number" formControlName="inputDisplaySizeMax" matInput placeholder="Maximum display size" [(ngModel)]="parametersList[2].valueMax">
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
       </div>
-      <div>
-        <mat-checkbox color="primary" formControlName="checkboxOS" [(ngModel)]="OSParameter.checked" (change)="getCheckboxes()">{{OSParameter.name}}</mat-checkbox>
-        <mat-form-field *ngIf="OSParameter.checked">
-          <input matInput formControlName="inputOS" placeholder="" [(ngModel)]="OSParameter.valueMin">
-        </mat-form-field>
+      <div formGroupName="OSGroup">
+        <mat-card class="parameter-card">
+          <mat-card-content class="parameter-card-content">
+            <mat-checkbox color="primary" formControlName="checkboxOS" [(ngModel)]="parametersList[3].checked" (change)="getCheckboxes()"
+                          [required]="!validateCheckboxes()">{{parametersList[3].name}}</mat-checkbox>
+            <mat-form-field *ngIf="parametersList[3].checked">
+              <mat-label>Operation system</mat-label>
+              <mat-select [(value)]="parametersList[3].valueMin">
+                <mat-option *ngFor="let selectedOS of OSArray" [value]="selectedOS">{{selectedOS}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
       </div>
-      <div>
-        <mat-checkbox color="primary" formControlName="checkboxRAM" [(ngModel)]="RAMParameter.checked" (change)="getCheckboxes()">{{RAMParameter.name}}</mat-checkbox>
-        <mat-form-field *ngIf="RAMParameter.checked">
-          <input matInput formControlName="inputRAM" placeholder="Minimum RAM size" [(ngModel)]="RAMParameter.valueMin">
-        </mat-form-field>
+      <div formGroupName="RAMGroup">
+        <mat-card class="parameter-card">
+          <mat-card-content class="parameter-card-content">
+            <mat-checkbox color="primary" formControlName="checkboxRAM" [(ngModel)]="parametersList[4].checked" (change)="getCheckboxes()"
+                          [required]="!validateCheckboxes()">{{parametersList[4].name}}</mat-checkbox>
+            <mat-form-field *ngIf="parametersList[4].checked">
+              <input type="number" matInput formControlName="inputRAM" placeholder="Minimum RAM size" [(ngModel)]="parametersList[4].valueMin">
+            </mat-form-field>
+          </mat-card-content>
+        </mat-card>
       </div>
-      <div>
-        <mat-checkbox color="primary" formControlName="checkboxBattery" [(ngModel)]="batteryParameter.checked" (change)="getCheckboxes()">{{batteryParameter.name}}</mat-checkbox>
-        <mat-form-field *ngIf="batteryParameter.checked">
-          <input matInput formControlName="inputBattery" placeholder="Minimum battery capacity" [(ngModel)]="batteryParameter.valueMin">
-        </mat-form-field>
-      </div>
-      <div>
-        <button mat-button matStepperNext>Next</button>
+      <div class="button-container">
+        <button class="mat-raised-button mat-primary" mat-button matStepperNext [disabled]="!validateCheckboxes()" (click)="this.combineElements();">Next</button>
       </div>
     </form>
   </mat-step>
   <mat-step [stepControl]="secondFormGroup">
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Set weights</ng-template>
-      <mat-form-field>
-        <input matInput placeholder="Address" formControlName="secondCtrl" required>
-      </mat-form-field>
-      <div>
-        <button mat-button matStepperPrevious>Back</button>
-        <button mat-button matStepperNext>Next</button>
+      <div *ngFor="let weight of weightsList; index as i">
+        <mat-card class="value-card">
+          <mat-card-content class="value-card-content">
+            <div class="labels-container">
+              <div class="label">{{weight.firstParameter.name}}</div>
+              <div>{{weight.secondParameter.name}}</div>
+            </div>
+            <div class="slider">
+              <mat-slider (valueChange)="onSliderValueChange($event, i)" color="primary" [max]="9" [min]="-9" [step]="1" [value]="0"
+                          [thumbLabel]="true"></mat-slider>
+            </div>
+          </mat-card-content>
+        </mat-card>
+      </div>
+      <div class="button-container">
+        <button class="mat-raised-button mat-primary" mat-button matStepperPrevious>Back</button>
+        <button class="mat-raised-button mat-primary" mat-button matStepperNext (click)="this.getBestPhones()">Next</button>
+      </div>
+    </form>
+  </mat-step>
+  <mat-step [stepControl]="secondFormGroup" optional>
+    <form [formGroup]="secondFormGroup">
+      <mat-card class="value-card">
+        <mat-card-content class="value-card-content">
+          <ng-template matStepLabel>Choose phones</ng-template>
+          <div>Choose phones you want</div>
+          <div class="brand-selector">
+            <mat-form-field>
+              <mat-label>Brand</mat-label>
+              <mat-select (selectionChange)="this.updateModels($event.value); selectedModel=null" [(value)]="selectedBrand">
+                <mat-option *ngFor="let selectedBrand of brandsArray" [value]="selectedBrand">{{selectedBrand}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+
+          <div class="model-selector">
+            <mat-form-field>
+              <mat-label>Model</mat-label>
+              <mat-select [(value)]="selectedModel" [disabled]="!modelsArray">
+                <mat-option *ngFor="let selectedModel of modelsArray" [value]="selectedModel">{{selectedModel}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <button (click)="this.addPhone(selectedBrand, selectedModel)" [disabled]="!selectedModel" class="mat-raised-button mat-primary" mat-raised-button="">Add</button>
+        </mat-card-content>
+      </mat-card>
+      <div class="button-container">
+        <button class="mat-raised-button mat-primary" mat-button matStepperPrevious>Back</button>
+        <button class="mat-raised-button mat-primary" mat-button matStepperNext>Next</button>
       </div>
     </form>
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Results</ng-template>
-    <div>
-      <button mat-button matStepperPrevious>Back</button>
-      <button mat-button (click)="stepper.reset()">Reset</button>
+    <div *ngFor="let weight of weightsList">
+      {{weight.firstParameter}}
+      {{weight.secondParameter}}
+      {{weight.weight}}
+    </div>
+    <div class="button-container">
+      <button class="mat-raised-button mat-primary" mat-button matStepperPrevious>Back</button>
+      <button class="mat-raised-button mat-primary" mat-button (click)="stepper.reset()">Reset</button>
     </div>
   </mat-step>
 </mat-horizontal-stepper>

@@ -25,24 +25,25 @@
 
   <div *ngIf="phonesArray.length != 0" class="grid">
     <div>
-      <table class="wholeTable">
-        <table class="detailsTable">
-          <tr class="img">
+      <table class="whole-table">
+        <table class="details-table">
+          <tr>
             <th>Photo</th>
             <td *ngFor="let phone of phonesArray">
-
+              <div class="photo-container">
               <img alt="Photo not available"
                    onerror="this.src='/assets/images/photo-not-available.jpg';"
                    src="{{phone?.imageUrl}}">
-              <button mat-mini-fab color="warn" (click)="this.removePhoneFromComparision(phone)">X
+              <button mat-mini-fab class="remove-button" color="warn" (click)="this.removePhoneFromComparision(phone)">X
               </button>
+              </div>
             </td>
           </tr>
         </table>
         <tr>
           <mat-checkbox color="primary" checked="true" (change)="onChange(0)">Summary</mat-checkbox>
         </tr>
-        <table class="detailsTable" *ngIf="!showSummary">
+        <table class="details-table" *ngIf="!showSummary">
           <tr>
             <th>Brand</th>
             <td *ngFor="let phone of phonesArray">
@@ -93,7 +94,7 @@
         <tr>
           <mat-checkbox color="primary" (change)="onChange(1)">General</mat-checkbox>
         </tr>
-        <table class="detailsTable" *ngIf="!showGeneral">
+        <table class="details-table" *ngIf="!showGeneral">
           <tr>
             <th>Operation system</th>
             <td *ngFor="let phone of phonesArray">
@@ -163,7 +164,7 @@
         <tr>
           <mat-checkbox color="primary" (change)="onChange(2)">Network Connectivity</mat-checkbox>
         </tr>
-        <table class="detailsTable" *ngIf="!showNetwork">
+        <table class="details-table" *ngIf="!showNetwork">
           <tr>
             <th rowspan="3">Bands</th>
             <td *ngFor="let phone of phonesArray">
@@ -197,7 +198,7 @@
         <tr>
           <mat-checkbox color="primary" (change)="onChange(3)">Multimedia</mat-checkbox>
         </tr>
-        <table class="detailsTable" *ngIf="!showMultimedia">
+        <table class="details-table" *ngIf="!showMultimedia">
           <tr>
             <th>Primary camera</th>
             <td *ngFor="let phone of phonesArray">

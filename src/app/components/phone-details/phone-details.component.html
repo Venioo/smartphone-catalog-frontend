@@ -1,13 +1,13 @@
-<div class="phone">
+<div class="wrapper">
   <div class="phone-image">
     <img alt="Photo not available" onerror="this.src='/assets/images/photo-not-available.jpg';"
          src="{{phone?.imageUrl}}">
   </div>
-  <table class="wholeTable">
+  <table class="whole-table">
     <tr>
       <mat-checkbox color="primary" checked="true" (change)="onChange(0)">Summary</mat-checkbox>
     </tr>
-    <table class="detailsTable" *ngIf="!showSummary">
+    <table class="details-table" *ngIf="!showSummary">
       <tr>
         <th>Brand</th>
         <td>{{phone?.brand}}</td>
@@ -48,7 +48,7 @@
     <tr>
       <mat-checkbox color="primary" (change)="onChange(1)">General</mat-checkbox>
     </tr>
-    <table class="detailsTable" *ngIf="!showGeneral">
+    <table class="details-table" *ngIf="!showGeneral">
       <tr>
         <th>Operation system</th>
         <td>{{phone?.os}}</td>
@@ -105,7 +105,7 @@
     <tr>
       <mat-checkbox color="primary" (change)="onChange(2)">Network Connectivity</mat-checkbox>
     </tr>
-    <table class="detailsTable" *ngIf="!showNetwork">
+    <table class="details-table" *ngIf="!showNetwork">
       <tr>
         <th rowspan="3">Bands</th>
         <td>{{phone?.bands2}}</td>
@@ -133,7 +133,7 @@
     <tr>
       <mat-checkbox color="primary" (change)="onChange(3)">Multimedia</mat-checkbox>
     </tr>
-    <table class="detailsTable" *ngIf="!showMultimedia">
+    <table class="details-table" *ngIf="!showMultimedia">
       <tr>
         <th>Primary camera</th>
         <td>{{phone?.primaryCamera}}</td>

@@ -1,0 +1,55 @@
+mat-form-field {
+  margin: 5px;
+}
+
+.parameter-card {
+  margin: 2px auto;
+  width: 300px;
+  justify-content: center;
+  align-items: center;
+}
+
+.parameter-card-content {
+  display: flex;
+  flex-direction: column;
+}
+
+mat-slider{
+  width: 75%;
+}
+
+.error {
+  text-align: center;
+  color: red;
+  margin-bottom: 10px;
+}
+
+.labels-container{
+  display: flex;
+  justify-content: space-between;
+}
+
+.button-container {
+  text-align: center;
+}
+
+button {
+  margin: 10px 5px 0 5px;
+}
+
+.value-card {
+  width: 700px;
+  margin: 2px auto;
+  justify-content: center;
+  align-items: center;
+}
+
+.value-card-content {
+    display: flex;
+    flex-direction: column;
+}
+
+.slider {
+  text-align: center;
+}
+
