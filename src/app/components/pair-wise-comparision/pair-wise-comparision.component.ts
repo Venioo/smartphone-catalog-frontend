@@ -4,6 +4,7 @@ import {Parameter} from '../../dto/parameter/parameter';
 import {Weight} from '../../dto/weight/weight';
 import {PhoneService} from '../../services/phone-service/phone.service';
 import {Phone} from '../../dto/phone/phone';
+import {PairComparision} from '../../dto/pair-comparision/pair-comparision';
 
 @Component({
   selector: 'app-pair-wise-comparision',
@@ -12,21 +13,23 @@ import {Phone} from '../../dto/phone/phone';
 })
 export class PairWiseComparisionComponent implements OnInit {
 
-  parametersList = [new Parameter('price', 'Price', '', '', false),
-    new Parameter('announcedDate', 'Announced date', '', '', false),
-    new Parameter('displaySize', 'Display size', '', '', false),
-    new Parameter('os', 'Operation system', '', '', false),
-    new Parameter('ram', 'RAM size', '', '', false)];
+  parametersList = [new Parameter('price', 'Price', '0', '0', false),
+    new Parameter('announcedDate', 'Announced date', '2019', '', false),
+    new Parameter('displaySize', 'Display size', '0', '0', false),
+    new Parameter('os', 'Operation system', 'Android', '', false),
+    new Parameter('ram', 'RAM size', '0', '0', false)];
   OSArray = ['Android', 'iOS'];
   weightsList: Weight[];
+  pairComparisionParameters: PairComparision = new PairComparision();
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
   brandsArray = [];
   modelsArray = [];
-  phonesArray = [];
+  phonesArray: Phone[] = [];
 
   constructor(private formBuilder: FormBuilder, private phoneService: PhoneService) {
   }
+
 
   ngOnInit() {
     this.firstFormGroup = this.formBuilder.group({
@@ -112,14 +115,37 @@ export class PairWiseComparisionComponent implements OnInit {
     this.phoneService
       .getPhoneByBrandAndModel(brand, model)
       .subscribe((data: Phone) => {
-        if (this.phonesArray.indexOf(data.id) === -1) {
+        let exist = false;
+        let i: number;
+        for (i = 0; i < this.phonesArray.length; i++) {
+          if (this.phonesArray[i].id === data.id) {
+            exist = true;
+          }
+        }
+        if (!exist) {
           this.phonesArray.push(data);
         }
       });
   }
 
+  removePhone(phone: Phone) {
+    this.phonesArray = this.phonesArray.filter(item => item !== phone);
+  }
+
   getBestPhones() {
     // TODO
-    console.log(JSON.stringify(this.weightsList));
+    this.pairComparisionParameters.weightList = this.weightsList;
+    this.pairComparisionParameters.phonesList = this.getPhonesIds();
+    console.log(JSON.stringify(this.pairComparisionParameters));
+  }
+
+  validateNumberOfPhones() {
+    return !(this.phonesArray.length === 1);
+  }
+
+  getPhonesIds() {
+    const array: number[] = [];
+    this.phonesArray.forEach(value => array.push(value.id));
+    return array;
   }
 }

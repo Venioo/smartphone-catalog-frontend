@@ -21,7 +21,7 @@ mat-slider{
 .error {
   text-align: center;
   color: red;
-  margin-bottom: 10px;
+  margin: 10px;
 }
 
 .labels-container{
@@ -50,6 +50,33 @@ button {
 }
 
 .slider {
+  text-align: center;
+}
+
+.label {
+  text-align: center;
+  margin: 5px;
+}
+
+.brand-selector {
+  text-align: center;
+}
+
+.model-selector {
+  text-align: center;
+}
+
+.phone-list {
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-button {
+  width: 100px;
+  text-align: center;
+}
+
+.wrapper {
   text-align: center;
 }
 
