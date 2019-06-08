@@ -137,17 +137,17 @@
                 </mat-select>
               </mat-form-field>
             </div>
-              <button (click)="this.addPhone(selectedBrand, selectedModel)" [disabled]="!selectedModel"
-                      class="mat-raised-button mat-primary" mat-raised-button="">Add
-              </button>
-            </div>
+            <button (click)="this.addPhone(selectedBrand, selectedModel)" [disabled]="!selectedModel"
+                    class="mat-raised-button mat-primary" mat-raised-button="">Add
+            </button>
+          </div>
         </mat-card-content>
       </mat-card>
       <mat-card *ngIf="!(this.phonesArray.length === 0)" class="parameter-card">
         <mat-card-content class="parameter-card-content">
           <div>
             <div *ngFor="let phone of phonesArray">
-              <div class = phone-list>
+              <div class=phone-list>
                 <div>
                   {{phone?.brand}}
                   {{phone?.model}}
@@ -173,11 +173,14 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Results</ng-template>
-    <div *ngFor="let weight of weightsList">
-      {{weight.firstParameter}}
-      {{weight.secondParameter}}
-      {{weight.weight}}
-    </div>
+    <mat-card class="parameter-card">
+      <mat-card-content class="parameter-card-content">
+        <div class="result" *ngFor="let result of results" (click)="onClick(result.id)">
+          {{result?.brand}}
+          {{result?.model}}
+        </div>
+      </mat-card-content>
+    </mat-card>
     <div class="button-container">
       <button class="mat-raised-button mat-primary" mat-button matStepperPrevious>Back</button>
       <button class="mat-raised-button mat-primary" mat-button (click)="stepper.reset()">Reset</button>

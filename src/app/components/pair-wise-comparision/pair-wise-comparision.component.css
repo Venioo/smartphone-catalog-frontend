@@ -80,3 +80,8 @@ button {
   text-align: center;
 }
 
+.result {
+  cursor: pointer;
+  margin: 5px;
+}
+

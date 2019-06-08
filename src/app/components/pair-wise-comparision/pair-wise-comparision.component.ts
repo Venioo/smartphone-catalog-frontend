@@ -5,6 +5,7 @@ import {Weight} from '../../dto/weight/weight';
 import {PhoneService} from '../../services/phone-service/phone.service';
 import {Phone} from '../../dto/phone/phone';
 import {PairComparision} from '../../dto/pair-comparision/pair-comparision';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-pair-wise-comparision',
@@ -26,8 +27,9 @@ export class PairWiseComparisionComponent implements OnInit {
   brandsArray = [];
   modelsArray = [];
   phonesArray: Phone[] = [];
+  results: Phone[] = [];
 
-  constructor(private formBuilder: FormBuilder, private phoneService: PhoneService) {
+  constructor(private formBuilder: FormBuilder, private phoneService: PhoneService, private router: Router) {
   }
 
 
@@ -133,10 +135,12 @@ export class PairWiseComparisionComponent implements OnInit {
   }
 
   getBestPhones() {
-    // TODO
     this.pairComparisionParameters.weightList = this.weightsList;
     this.pairComparisionParameters.phonesList = this.getPhonesIds();
-    console.log(JSON.stringify(this.pairComparisionParameters));
+    this.phoneService.pairwiseCompairsion(this.pairComparisionParameters)
+      .subscribe((data: Phone[]) => this.results = data);
+    console.log(this.results);
+    // console.log(JSON.stringify(this.pairComparisionParameters));
   }
 
   validateNumberOfPhones() {
@@ -147,5 +151,9 @@ export class PairWiseComparisionComponent implements OnInit {
     const array: number[] = [];
     this.phonesArray.forEach(value => array.push(value.id));
     return array;
+  }
+
+  onClick(id: number) {
+    this.router.navigate(['phones', id]);
   }
 }

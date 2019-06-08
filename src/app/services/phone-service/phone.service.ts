@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient, HttpEvent, HttpHandler, HttpInterceptor, HttpParams, HttpRequest} from '@angular/common/http';
 import {Configuration} from '../configuration/configuration.service';
 import {Observable} from 'rxjs';
+import {PairComparision} from '../../dto/pair-comparision/pair-comparision';
 
 
 @Injectable({
@@ -15,10 +16,12 @@ export class PhoneService {
   private readonly pageUrl: string;
   private readonly pageSearchedUrl: string;
   private readonly phonesComparisionUrl: string;
+  private readonly phonesPairwiseComparision: string;
 
 
   constructor(private httpClient: HttpClient, private configuration: Configuration) {
     this.phonesUrl = configuration.apiUrl + 'phones/';
+    this.phonesPairwiseComparision = this.phonesUrl + 'pwcomparison/';
     this.pageUrl = this.phonesUrl + 'page/';
     this.pageSearchedUrl = this.phonesUrl + 'page/search';
     this.brandsUrl = this.phonesUrl + 'brands/';
@@ -56,6 +59,10 @@ export class PhoneService {
   public getPhoneByBrandAndModel<T>(brand: string, model: string): Observable<T> {
     const params = new HttpParams().set('brand', brand).set('model', model);
     return this.httpClient.get<T>(this.phonesComparisionUrl, {params});
+  }
+
+  public pairwiseCompairsion<T>(pwc: PairComparision): Observable<T> {
+    return this.httpClient.post<T>(this.phonesPairwiseComparision, pwc);
   }
 
   public add<T>(itemName: string): Observable<T> {
