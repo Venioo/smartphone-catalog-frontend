@@ -46,7 +46,16 @@ export class ComparisionComponent implements OnInit {
     this.phoneService
       .getPhoneByBrandAndModel(brand, model)
       .subscribe((data: Phone) => {
-        this.phonesArray.push(data);
+        let exist = false;
+        let i: number;
+        for (i = 0; i < this.phonesArray.length; i++) {
+          if (this.phonesArray[i].id === data.id) {
+            exist = true;
+          }
+        }
+        if (!exist) {
+          this.phonesArray.push(data);
+        }
       });
   }
 
