@@ -173,7 +173,10 @@
   </mat-step>
   <mat-step>
     <ng-template matStepLabel>Results</ng-template>
-    <mat-card class="parameter-card">
+    <div class="error" *ngIf="results?.length == 0">
+      No phones matching your search criteria were found.
+    </div>
+    <mat-card *ngIf="results?.length != 0" class="parameter-card">
       <mat-card-content class="parameter-card-content">
         <div class="result" *ngFor="let result of results" (click)="onClick(result.id)">
           {{result?.brand}}
